@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+generator custom_generator {
+    provider = "prisma-generator-fake-data"
+    output   = "../types/fake-data.ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RuralProducer {
+  id        Int      @id @default(autoincrement())
+  cpf       String   @unique
+  cnpj      String?  @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  farmer Farmer[]
+}
+
+model Farmer {
+  id                   Int      @id @default(autoincrement())
+  name                 String   @unique
+  total_area           String
+  total_area_arable    String
+  total_area_vegetable String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  producerId Int
+
+  producer RuralProducer    @relation(fields: [producerId], references: [id])
+  cultures PlantedCulture[]
+}
+
+model PlantedCulture {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  farmerId Int
+
+  farmer Farmer @relation(fields: [farmerId], references: [id])
+}
