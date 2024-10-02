@@ -1,5 +1,5 @@
 import Header from "./_components/header";
-import InsertProducerPage from "./_components/insert_producer";
+import LoginPage from "./_components/loginForm";
 
 // import { fakeUser, fakeProfileComplete } from '../types/fake-data.ts'; //or your custom output path
 
@@ -12,7 +12,7 @@ export default function Home() {
 
       <Header />
 
-      <InsertProducerPage />
+      <LoginPage />
 
     </div>
   );

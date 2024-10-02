@@ -4,16 +4,14 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 generator custom_generator {
-    provider = "prisma-generator-fake-data"
-    output   = "../types/fake-data.ts"
+  provider = "prisma-generator-fake-data"
+  output   = "../types/fake-data.ts"
 }
 
 datasource db {
@@ -23,7 +21,7 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  name      String
+  username  String
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
