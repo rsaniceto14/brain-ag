@@ -9,7 +9,7 @@ const Header = () => {
 
         <Card>
             <CardContent className="flex flex-row items-center justify-between p-5">
-                <Image alt="BrainAg" src="/3980036.png" height={18} width={60} />
+                <Image alt="BrainAg" src="/3980036.png" height={16} width={50} />
 
                 <h1>Brain Agriculture</h1>
 

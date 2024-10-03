@@ -7,7 +7,9 @@ import Decimal from 'decimal.js';
 export function fakeUser() {
   return {
     name: faker.person.fullName(),
+    username: faker.internet.userName(),
     password: faker.lorem.words(5),
+    email: faker.internet.email(),
     updatedAt: faker.date.anytime(),
   };
 }
@@ -15,7 +17,22 @@ export function fakeUserComplete() {
   return {
     id: faker.number.int(),
     name: faker.person.fullName(),
+    username: faker.internet.userName(),
     password: faker.lorem.words(5),
+    email: faker.internet.email(),
+    createdAt: new Date(),
+    updatedAt: faker.date.anytime(),
+  };
+}
+export function fakeSession() {
+  return {
+    updatedAt: faker.date.anytime(),
+  };
+}
+export function fakeSessionComplete() {
+  return {
+    id: faker.number.int(),
+    userId: faker.number.int(),
     createdAt: new Date(),
     updatedAt: faker.date.anytime(),
   };
